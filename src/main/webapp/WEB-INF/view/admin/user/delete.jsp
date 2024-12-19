@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
                 <meta name="author" content="Hỏi Dân IT" />
-                <title>Dashboard - Hỏi Dân IT</title>
+                <title>Delete User - Hỏi Dân IT</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -33,36 +33,23 @@
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
-                                                <h3>Table users</h3>
-                                                <a href="/admin/user/create" class="btn btn-primary">Create a user</a>
+                                                <h3>Delete the User with id=${id}</h3>
                                             </div>
                                             <hr />
-                                            <table class="table table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Email</th>
-                                                        <th>Full Name</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <c:forEach var="user" items="${users1}">
-                                                      <tr>
-                                                        <th>${user.id}</th>
-                                                        <td>${user.email}</td>
-                                                        <td>${user.fullName}</td>
-                                                        <td>
-                                                            <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
-                                                            <a href="/admin/user/update/${user.id}"class="btn btn-warning  mx-2">Update</a>
-                                                            <a href="/admin/user/delete/${user.id}"class="btn btn-danger">Delete</a>
-                                                        </td>
-                                                      </tr>
-                                                    </c:forEach>
-                                                </tbody>
-                                            </table>
+                                            <div class="card" style="width: 60%">
+                                                <div class="alert alert-danger" role="alert">
+                                                   Are you sure to delete this user!
+                                                </div>
+                                            </div>
+                                            <form:form method="post" action="/admin/user/delete"  modelAttribute="newUser">
+                                                <form:input value="${id}" type="text" class="form-control" path="id" />
+                                                <button class="btn btn-danger">Comfirm</button>
+                                            </form:form>
+                
                                         </div>
+                
                                     </div>
+                
                                 </div>
                             </div>
                         </main>
