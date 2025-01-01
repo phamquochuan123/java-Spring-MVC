@@ -40,7 +40,8 @@
                                         <div class="col-md-6 col-12 mx-auto">
                                             <h3>Create a user</h3>
                                             <hr />
-                                            <form:form method="post" action="/admin/user/create" modelAttribute="newUser">
+                                            <form:form method="post" action="/admin/user/create"
+                                            modelAttribute="newUser" class="row" enctype="multipart/form-data">
                                                     <div class="row g-3">
                                                         <div class="mb-3 col-12 col-md-6">
                                                             <label class="form-label">Email:</label>
@@ -76,7 +77,8 @@
                                                         <div class="mb-3 col-12 col-md-6">
                                                             <label for="avaterFile" class="form-label">Avatar:</label>
                                                             <input class="form-control" type="file" id="avatarFile"
-                                                                accept=".png, .jpg ,.jpeg">
+                                                                accept=".png, .jpg ,.jpeg" name="hoidanitFile"
+                                                                />
                                                         </div>
                                                         <div class="col-12 mb-3">
                                                             <img style="max-height: 250px; display :none" alt="avatar preview"
