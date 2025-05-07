@@ -65,7 +65,7 @@
                                                          <div class="col-md-6">
                                                              <div class="form-floating mb-3 mb-md-0">
                                                                  <form:input 
-                                                                 class="form-control &{not empty errorPassword ? 'is-invalid' : ''}" 
+                                                                 class="form-control ${not empty errorPassword ? 'is-invalid' : ''}" 
                                                                  type="password"
                                                                 placeholder="Create a password" path="password" />
                                                             <label>Password</label>
