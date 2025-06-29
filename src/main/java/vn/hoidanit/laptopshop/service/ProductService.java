@@ -6,14 +6,21 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import vn.hoidanit.laptopshop.domain.Product;
+import vn.hoidanit.laptopshop.repository.CartDetailRepository;
+import vn.hoidanit.laptopshop.repository.CartRepository;
 import vn.hoidanit.laptopshop.repository.ProductRepository;
 
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
+    private final CartRepository cartRepository;
+    private final CartDetailRepository cartDetailRepository;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, CartRepository cartRepository,
+            CartDetailRepository cartDetailRepository) {
         this.productRepository = productRepository;
+        this.cartDetailRepository = cartDetailRepository;
+        this.cartRepository = cartRepository;
     }
 
     public Product createProduct(Product pr) {
@@ -30,6 +37,10 @@ public class ProductService {
 
     public void deleteProduct(long id) {
         this.productRepository.deleteById(id);
+    }
+
+    public void handleAddProductTocart() {
+
     }
 
 }
