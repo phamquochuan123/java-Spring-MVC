@@ -99,4 +99,38 @@ public class ProductService {
         return this.cartRepository.findByUser(user);
     }
 
+    public void handleRemoveCartDetail(long cartDetailId, HttpSession session) {
+        Optional<CartDetail> CartDetailOptional = this.cartDetailRepository.findById(cartDetailId);
+        if (CartDetailOptional.isPresent()) {
+            CartDetail CartDetail = CartDetailOptional.get();
+
+            Cart currenCart = CartDetail.getCart();
+
+            this.cartDetailRepository.deleteById(cartDetailId);
+
+            // update cart
+            if (currenCart.getSum() > 1) {
+                int s = currenCart.getSum() - 1;
+                currenCart.setSum(s);
+                session.setAttribute("sum", s);
+                this.cartRepository.save(currenCart); // cập nhật
+            } else {
+                // delete cart(sum = 1)
+                this.cartRepository.deleteById(currenCart.getId());
+                session.setAttribute("sum", 0);
+            }
+        }
+    }
+
+    public void handleUpdateCartBeforeCheckout(List<CartDetail> cartDetails) {
+        for (CartDetail cartDetail : cartDetails) {
+            Optional<CartDetail> cdOptional = this.cartDetailRepository.findById(cartDetail.getId());
+            if (cdOptional.isPresent()) {
+                CartDetail currentCartDetail = cdOptional.get();
+                currentCartDetail.setQuantity(cartDetail.getQuantity());
+                this.cartDetailRepository.save(currentCartDetail);
+            }
+        }
+    }
+
 }
