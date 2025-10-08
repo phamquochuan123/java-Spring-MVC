@@ -18,15 +18,10 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private double totalPrice;
-
     private String receiverName;
-
     private String receiverAddress;
-
     private String receiverPhone;
-
     private String status;
 
     // user_id
@@ -35,7 +30,7 @@ public class Order {
     private User user;
 
     @OneToMany(mappedBy = "order")
-    List<OrderDetail> orderDetail;
+    private List<OrderDetail> orderDetail;
 
     public String getReceiverName() {
         return receiverName;
