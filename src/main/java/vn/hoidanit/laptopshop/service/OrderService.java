@@ -38,7 +38,7 @@ public class OrderService {
         Optional<Order> orderOptional = this.fetchOrderById(id);
         if (orderOptional.isPresent()) {
             Order order = orderOptional.get();
-            List<OrderDetail> orderDetails = order.getOrderDetail();
+            List<OrderDetail> orderDetails = order.getOrderDetails();
             for (OrderDetail orderDetail : orderDetails) {
                 this.orderDetailRepository.deleteById(orderDetail.getId());
             }

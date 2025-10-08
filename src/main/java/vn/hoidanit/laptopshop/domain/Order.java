@@ -30,7 +30,7 @@ public class Order {
     private User user;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderDetail> orderDetail;
+    private List<OrderDetail> orderDetails;
 
     public String getReceiverName() {
         return receiverName;
@@ -88,17 +88,17 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
     @Override
     public String toString() {
         return "Order [id=" + id + ", totalPrice=" + totalPrice + "]";
-    }
-
-    public List<OrderDetail> getOrderDetail() {
-        return orderDetail;
-    }
-
-    public void setOrderDetail(List<OrderDetail> orderDetail) {
-        this.orderDetail = orderDetail;
     }
 
 }
