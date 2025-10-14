@@ -7,12 +7,9 @@ import org.springframework.stereotype.Service;
 
 import vn.hoidanit.laptopshop.domain.Order;
 import vn.hoidanit.laptopshop.domain.OrderDetail;
-import vn.hoidanit.laptopshop.domain.Product;
-import vn.hoidanit.laptopshop.repository.CartDetailRepository;
-import vn.hoidanit.laptopshop.repository.CartRepository;
+import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.repository.OrderDetailRepository;
 import vn.hoidanit.laptopshop.repository.OrderRepository;
-import vn.hoidanit.laptopshop.repository.ProductRepository;
 
 @Service
 public class OrderService {
@@ -35,6 +32,7 @@ public class OrderService {
     }
 
     public void deleteOrderById(long id) {
+        // delete order detail
         Optional<Order> orderOptional = this.fetchOrderById(id);
         if (orderOptional.isPresent()) {
             Order order = orderOptional.get();
@@ -43,6 +41,7 @@ public class OrderService {
                 this.orderDetailRepository.deleteById(orderDetail.getId());
             }
         }
+
         this.orderRepository.deleteById(id);
     }
 
@@ -55,4 +54,8 @@ public class OrderService {
         }
     }
 
+    public List<Order> fetchOrderByUser(User user) {
+        return this.orderRepository.findByUser(user);
+
+    }
 }

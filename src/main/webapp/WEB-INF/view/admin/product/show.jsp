@@ -1,9 +1,11 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
             <!DOCTYPE html>
             <html lang="en">
-                 <head>
+
+            <head>
                 <meta charset="utf-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -34,11 +36,12 @@
                                                 <a href="/admin/product/create" class="btn btn-primary">Create a
                                                     product</a>
                                             </div>
-                                               <hr />
+
+                                            <hr />
                                             <table class=" table table-bordered table-hover">
                                                 <thead>
                                                     <tr>
-                                                         <th>ID</th>
+                                                        <th>ID</th>
                                                         <th>Name</th>
                                                         <th>Price</th>
                                                         <th>Factory</th>
@@ -64,22 +67,25 @@
                                                                     class="btn btn-danger">Delete</a>
                                                             </td>
                                                         </tr>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
+
+                                                    </c:forEach>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </div>
+
                                 </div>
                             </div>
-                        </div>
-                    </main>
-                    <jsp:include page="../layout/footer.jsp"/>
-
+                        </main>
+                        <jsp:include page="../layout/footer.jsp" />
+                    </div>
                 </div>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-                crossorigin="anonymous"></script>
-            <script src="js/scripts.js"></script>
-        </body>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                    crossorigin="anonymous"></script>
+                <script src="/js/scripts.js"></script>
 
-        </html>
+            </body>
+
+            </html>
