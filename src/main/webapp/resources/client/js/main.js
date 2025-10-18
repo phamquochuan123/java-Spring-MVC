@@ -127,6 +127,20 @@
         $('#videoModal').on('hide.bs.modal', function (e) {
             $("#video").attr('src', $videoSrc);
         })
+
+        //add active class to header
+        const navElement = $("#navbarCollapse");
+        const currentUrl = window.location.pathname;
+        navElement.find('a.nav-link').each(function () {
+            const link = $(this); //get the current link in the loop
+            const href = link.attr('href'); //get the href attribute of the link
+
+            if (href === currentUrl) {
+                link.addClass('active'); //add 'active' class if the href matches the current
+            } else {
+                link.removeClass('active'); //remove 'active' class if the href does not matches
+            }
+        });
     });
 
 
@@ -146,6 +160,8 @@
     //     }
     //     button.parent().parent().find('input').val(newVal);
     // });
+
+
 
     $('.quantity button').on('click', function () {
         let change = 0;
