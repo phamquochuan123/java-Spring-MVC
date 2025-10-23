@@ -29,27 +29,27 @@ public class OrderController {
     @GetMapping("/admin/order")
     public String getDashboard(Model model,
             @RequestParam("page") Optional<String> pageOptional) {
-        // page = 1 . limit = 10
 
-        // duoi db co 10 rows .count =100 =>chia limit = 10 pages
         int page = 1;
         try {
             if (pageOptional.isPresent()) {
+                // convert from String to int
                 page = Integer.parseInt(pageOptional.get());
             } else {
                 // page = 1
             }
         } catch (Exception e) {
             // page = 1
-            // Todo: handle exception
+            // TODO: handle exception
         }
-        Pageable pageable = PageRequest.of(page - 1, 2);
-        Page<Order> order = this.orderService.fetchAllOrders(pageable);
-        List<Order> listOrders = order.getContent();
-        model.addAttribute("orders", listOrders);
 
+        Pageable pageable = PageRequest.of(page - 1, 1);
+        Page<Order> ordersPage = this.orderService.fetchAllOrders(pageable);
+        List<Order> orders = ordersPage.getContent();
+
+        model.addAttribute("orders", orders);
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", order.getTotalPages());
+        model.addAttribute("totalPages", ordersPage.getTotalPages());
         return "admin/order/show";
     }
 

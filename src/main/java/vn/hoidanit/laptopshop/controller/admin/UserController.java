@@ -27,8 +27,8 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
     public UserController(
-            UserService userService,
             UploadService uploadService,
+            UserService userService,
             PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.uploadService = uploadService;
@@ -58,8 +58,9 @@ public class UserController {
             }
         } catch (Exception e) {
             // page = 1
-            // Todo: handle exception
+            // TODO: handle exception
         }
+
         Pageable pageable = PageRequest.of(page - 1, 1);
         Page<User> usersPage = this.userService.getAllUsers(pageable);
         List<User> users = usersPage.getContent();
@@ -87,26 +88,28 @@ public class UserController {
     @PostMapping(value = "/admin/user/create")
     public String createUserPage(Model model,
             @ModelAttribute("newUser") @Valid User hoidanit,
-            BindingResult newUserbindingResult,
+            BindingResult newUserBindingResult,
             @RequestParam("hoidanitFile") MultipartFile file) {
-        // List<FieldError> errors = newUserbindingResult.getFieldErrors();
+
+        // List<FieldError> errors = newUserBindingResult.getFieldErrors();
         // for (FieldError error : errors) {
         // System.out.println(">>>>" + error.getField() + " - " +
         // error.getDefaultMessage());
         // }
-        // validate
-        if (newUserbindingResult.hasErrors()) {
-            return "/admin/user/create";
 
+        // validate
+        if (newUserBindingResult.hasErrors()) {
+            return "admin/user/create";
         }
 
+        //
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(hoidanit.getPassword());
 
         hoidanit.setAvatar(avatar);
         hoidanit.setPassword(hashPassword);
         hoidanit.setRole(this.userService.getRoleByName(hoidanit.getRole().getName()));
-
+        // save
         this.userService.handleSaveUser(hoidanit);
         return "redirect:/admin/user";
     }
@@ -146,5 +149,4 @@ public class UserController {
         this.userService.deleteAUser(eric.getId());
         return "redirect:/admin/user";
     }
-
 }

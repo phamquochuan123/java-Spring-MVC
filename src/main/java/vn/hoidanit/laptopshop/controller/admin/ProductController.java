@@ -35,22 +35,22 @@ public class ProductController {
     }
 
     @GetMapping("/admin/product")
-    public String getProduct(Model model,
+    public String getProduct(
+            Model model,
             @RequestParam("page") Optional<String> pageOptional) {
-        // page = 1 . limit = 10
-
-        // duoi db co 10 rows .count =100 =>chia limit = 10 pages
         int page = 1;
         try {
             if (pageOptional.isPresent()) {
+                // convert from String to int
                 page = Integer.parseInt(pageOptional.get());
             } else {
                 // page = 1
             }
         } catch (Exception e) {
             // page = 1
-            // Todo: handle exception
+            // TODO: handle exception
         }
+
         Pageable pageable = PageRequest.of(page - 1, 5);
         Page<Product> prs = this.productService.fetchProducts(pageable);
         List<Product> listProducts = prs.getContent();
@@ -58,6 +58,7 @@ public class ProductController {
 
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", prs.getTotalPages());
+
         return "admin/product/show";
     }
 
