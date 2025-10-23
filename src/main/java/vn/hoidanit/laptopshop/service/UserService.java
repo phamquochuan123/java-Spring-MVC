@@ -27,8 +27,8 @@ public class UserService {
             OrderRepository orderRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.orderRepository = orderRepository;
         this.productRepository = productRepository;
+        this.orderRepository = orderRepository;
     }
 
     public Page<User> getAllUsers(Pageable page) {
@@ -59,12 +59,10 @@ public class UserService {
 
     public User registerDTOtoUser(RegisterDTO registerDTO) {
         User user = new User();
-
         user.setFullName(registerDTO.getFirstName() + " " + registerDTO.getLastName());
         user.setEmail(registerDTO.getEmail());
         user.setPassword(registerDTO.getPassword());
         return user;
-
     }
 
     public boolean checkEmailExist(String email) {
@@ -86,5 +84,4 @@ public class UserService {
     public long countOrders() {
         return this.orderRepository.count();
     }
-
 }

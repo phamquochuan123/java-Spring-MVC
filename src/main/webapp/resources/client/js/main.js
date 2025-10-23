@@ -268,7 +268,7 @@
         searchParams.set('page', '1');
         searchParams.set('sort', sortValue);
 
-        //reset 
+        //reset
         searchParams.delete('factory');
         searchParams.delete('target');
         searchParams.delete('price');
@@ -276,9 +276,11 @@
         if (factoryArr.length > 0) {
             searchParams.set('factory', factoryArr.join(','));
         }
+
         if (targetArr.length > 0) {
             searchParams.set('target', targetArr.join(','));
         }
+
         if (priceArr.length > 0) {
             searchParams.set('price', priceArr.join(','));
         }
@@ -321,6 +323,8 @@
         $(`input[type="radio"][name="radio-sort"][value="${sort}"]`).prop('checked', true);
     }
 
+
+    //////////////////////////
     //handle add to cart with ajax
     $('.btnAddToCartHomepage').click(function (event) {
         event.preventDefault();
